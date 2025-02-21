@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Nombres</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+        .btn-chico { background-color: #3498db; }
+        .btn-chica { background-color: #e74c3c; }
+        .btn-animal { background-color: #2ecc71; }
+        #nombre {
+            font-size: 24px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generador de Nombres</h1>
+    <div class="container">
+        <button class="btn-chico" onclick="generarNombre('chico')">Nombre de Chico</button>
+        <button class="btn-chica" onclick="generarNombre('chica')">Nombre de Chica</button>
+        <button class="btn-animal" onclick="generarNombre('animal')">Nombre de Animal</button>
+        <p id="nombre">Haz clic en un botón para generar un nombre</p>
+    </div>
+
+    <script>
+        const nombres = {
+            chico: ["Mateo", "Lucas", "Daniel", "Alejandro", "Diego", "Samuel", "Carlos", "Javier", "Fernando", "Sergio",
+                    "Hugo", "Pablo", "Adrián", "Joaquín", "Cristian", "Andrés", "Mario", "Luis", "Antonio", "Raúl",
+                    "Gabriel", "Jorge", "Miguel", "Rafael", "José", "Ricardo", "Álvaro", "Iván", "Felipe", "Francisco",
+                    "Emanuel", "Esteban", "Roberto", "Leonardo", "Óscar", "Eduardo", "César", "Héctor", "Gonzalo", "Tomás",
+                    "Maximiliano", "Bruno", "Sebastián", "Ignacio", "Kevin", "Martín", "Vicente", "Emilio", "Ismael", "Nicolás"],
+            
+            chica: ["Sofía", "Isabella", "Valentina", "Camila", "Martina", "Lucía", "Carla", "Daniela", "Andrea", "Elena",
+                    "María", "Gabriela", "Laura", "Sara", "Natalia", "Paula", "Julia", "Clara", "Eva", "Carmen",
+                    "Rocío", "Marta", "Patricia", "Ángela", "Verónica", "Lourdes", "Noelia", "Silvia", "Irene", "Alicia",
+                    "Beatriz", "Vanessa", "Cristina", "Esther", "Lorena", "Marina", "Raquel", "Alejandra", "Fátima", "Victoria",
+                    "Bárbara", "Diana", "Nerea", "Teresa", "Gloria", "Adriana", "Rosana", "Carolina", "Mónica", "Milagros"],
+
+            animal: ["Max", "Rocky", "Luna", "Simba", "Milo", "Nala", "Toby", "Coco", "Bella", "Zeus",
+                     "Thor", "Daisy", "Rex", "Charlie", "Oreo", "Leo", "Sasha", "Loki", "Kira", "Bobby",
+                     "Bruno", "Gala", "Duke", "Tina", "Tommy", "Chester", "Lili", "Scooby", "Felix", "Maya",
+                     "Bambi", "Pancho", "Hachi", "Beto", "Lassie", "Nube", "Nico", "Toby", "Bobby", "Dobby",
+                     "Baloo", "Manchas", "Chispa", "Willy", "Tango", "Zelda", "Gordo", "Pelusa", "Tiza", "Rocco"]
+        };
+
+        function generarNombre(tipo) {
+            const lista = nombres[tipo];
+            const nombreAleatorio = lista[Math.floor(Math.random() * lista.length)];
+            document.getElementById("nombre").innerText = nombreAleatorio;
+        }
+    </script>
+</body>
+</html>
