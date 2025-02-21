@@ -39,46 +39,68 @@
         .btn-chico { background-color: #3498db; }
         .btn-chica { background-color: #e74c3c; }
         .btn-animal { background-color: #2ecc71; }
+        .btn-comun { background-color: #95a5a6; }
+        .btn-antiguo { background-color: #9b59b6; }
+        .btn-fantasia { background-color: #f39c12; }
         #nombre {
             font-size: 24px;
             margin-top: 20px;
             font-weight: bold;
             color: #333;
         }
+        .category-buttons {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Generador de Nombres</h1>
-    <div class="container">
-        <button class="btn-chico" onclick="generarNombre('chico')">Nombre de Chico</button>
-        <button class="btn-chica" onclick="generarNombre('chica')">Nombre de Chica</button>
-        <button class="btn-animal" onclick="generarNombre('animal')">Nombre de Animal</button>
+   <div class="container">
+        <div>
+            <button class="btn-chico" onclick="mostrarCategorias('chico')">Chico</button>
+            <button class="btn-chica" onclick="mostrarCategorias('chica')">Chica</button>
+            <button class="btn-animal" onclick="mostrarCategorias('animal')">Animal</button>
+        </div>
+
+        <div id="categoria-buttons" class="category-buttons" style="display:none;">
+            <button class="btn-comun" onclick="generarNombre('comun')">Común</button>
+            <button class="btn-antiguo" onclick="generarNombre('antiguo')">Antiguo</button>
+            <button class="btn-fantasia" onclick="generarNombre('fantasia')">Fantasía</button>
+        </div>
+
         <p id="nombre">Haz clic en un botón para generar un nombre</p>
     </div>
 
     <script>
-        const nombres = {
-            chico: ["Mateo", "Lucas", "Daniel", "Alejandro", "Diego", "Samuel", "Carlos", "Javier", "Fernando", "Sergio",
-                    "Hugo", "Pablo", "Adrián", "Joaquín", "Cristian", "Andrés", "Mario", "Luis", "Antonio", "Raúl",
-                    "Gabriel", "Jorge", "Miguel", "Rafael", "José", "Ricardo", "Álvaro", "Iván", "Felipe", "Francisco",
-                    "Emanuel", "Esteban", "Roberto", "Leonardo", "Óscar", "Eduardo", "César", "Héctor", "Gonzalo", "Tomás",
-                    "Maximiliano", "Bruno", "Sebastián", "Ignacio", "Kevin", "Martín", "Vicente", "Emilio", "Ismael", "Nicolás"],
-            
-            chica: ["Sofía", "Isabella", "Valentina", "Camila", "Martina", "Lucía", "Carla", "Daniela", "Andrea", "Elena",
-                    "María", "Gabriela", "Laura", "Sara", "Natalia", "Paula", "Julia", "Clara", "Eva", "Carmen",
-                    "Rocío", "Marta", "Patricia", "Ángela", "Verónica", "Lourdes", "Noelia", "Silvia", "Irene", "Alicia",
-                    "Beatriz", "Vanessa", "Cristina", "Esther", "Lorena", "Marina", "Raquel", "Alejandra", "Fátima", "Victoria",
-                    "Bárbara", "Diana", "Nerea", "Teresa", "Gloria", "Adriana", "Rosana", "Carolina", "Mónica", "Milagros"],
+       const nombres = {
+            chico: {
+                comun: ["Mateo", "Lucas", "Daniel", "Alejandro", "Diego", "Carlos", "Javier", "Sergio"],
+                antiguo: ["Héctor", "César", "Augusto", "Tiberio", "Homero", "Marco", "Octavio"],
+                fantasia: ["Thorin", "Aragorn", "Ezio", "Alaric", "Galen", "Raiden", "Tiberius"]
+            },
 
-            animal: ["Max", "Rocky", "Luna", "Simba", "Milo", "Nala", "Toby", "Coco", "Bella", "Zeus",
-                     "Thor", "Daisy", "Rex", "Charlie", "Oreo", "Leo", "Sasha", "Loki", "Kira", "Bobby",
-                     "Bruno", "Gala", "Duke", "Tina", "Tommy", "Chester", "Lili", "Scooby", "Felix", "Maya",
-                     "Bambi", "Pancho", "Hachi", "Beto", "Lassie", "Nube", "Nico", "Toby", "Bobby", "Dobby",
-                     "Baloo", "Manchas", "Chispa", "Willy", "Tango", "Zelda", "Gordo", "Pelusa", "Tiza", "Rocco"]
+            chica: {
+                comun: ["Sofía", "Isabella", "Valentina", "Martina", "Lucía", "Carla", "Sara", "Marta"],
+                antiguo: ["Cleopatra", "Atenea", "Diana", "Hipatia", "Isis", "Aurelia", "Cornelia"],
+                fantasia: ["Seraphina", "Elara", "Elysia", "Ariella", "Freya", "Lirael", "Amara"]
+            },
+
+            animal: {
+                comun: ["Max", "Luna", "Simba", "Milo", "Coco", "Rex", "Charlie", "Bella"],
+                antiguo: ["Cerbero", "Fénix", "Sphinx", "Gárgola", "Pegaso", "Hidra"],
+                fantasia: ["Rexar", "Drakon", "Tiberius", "Zeus", "Griffin", "Fenrir", "Aether"]
+            }
         };
 
-        function generarNombre(tipo) {
-            const lista = nombres[tipo];
+        let tipoSeleccionado = null;
+
+        function mostrarCategorias(tipo) {
+            tipoSeleccionado = tipo;
+            document.getElementById("categoria-buttons").style.display = "block";
+        }
+
+        function generarNombre(categoria) {
+            const lista = nombres[tipoSeleccionado][categoria];
             const nombreAleatorio = lista[Math.floor(Math.random() * lista.length)];
             document.getElementById("nombre").innerText = nombreAleatorio;
         }
